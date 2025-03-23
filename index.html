@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kad Raya Digital</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Envelope screen -->
+  <div class="envelope-screen" id="envelope-screen">
+    <img src="envelope.png" alt="Envelope" class="envelope-img" />
+    <button onclick="openEnvelope()">Buka Sampul</button>
+  </div>
+
+  <!-- Card screen (hidden by default) -->
+  <div class="card-container hidden" id="card-container">
+    <div class="card" id="card">
+      <div class="card-front">
+        <div class="top-images">
+          <img src="ketupat.png" alt="Ketupat" class="ketupat">
+          <img src="ketupat.png" alt="Ketupat" class="ketupat">
+        </div>
+        <h2>🌙 Selamat Hari Raya!</h2>
+        <button onclick="openCard()">Buka Kad</button>
+      </div>
+      <div class="card-inside">
+        <h1>Maaf Zahir dan Batin</h1>
+        <p>Semoga Raya tahun ini penuh keberkatan dan keceriaan!</p>
+      </div>
+    </div>
+  </div>
+
+  <audio id="bg-music" src="laguraya.mp3" preload="auto" loop></audio>
+
+  <script>
+    function openEnvelope() {
+      document.getElementById("envelope-screen").classList.add("hidden");
+      document.getElementById("card-container").classList.remove("hidden");
+
+      const music = document.getElementById("bg-music");
+      music.play().catch(err => console.log("Autoplay blocked:", err));
+    }
+
+    function openCard() {
+      document.getElementById("card").classList.add("open");
+    }
+  </script>
+</body>
+</html>
