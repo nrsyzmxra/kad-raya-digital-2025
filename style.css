@@ -84,33 +84,27 @@ body {
 }
 
 /* ---------------- VIDEO FLIP CARD ---------------- */
+/* Make sure the container fills the screen */
 .video-container {
-  width: 100%;
-  height: 100vh;
-  background-color: #f3f3e7;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
-  padding: 2vw;
-  box-sizing: border-box;
+  width: 100vw;  /* Full viewport width */
+  height: 100vh; /* Full viewport height */
   overflow: hidden;
+  background-color: #f3f3e7;
 }
 
-/* Flip card container - responsive and limits height */
+/* Flip card - maintains original aspect ratio */
 .flip-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
+  width: min(90vw, 56vh);  /* Adjust width dynamically */
+  height: min(90vh, 36vw); /* Maintain aspect ratio */
+  max-width: 500px;  /* Limit max size for large screens */
+  max-height: 800px;
   transform-style: preserve-3d;
   transition: transform 1s ease;
   perspective: 1200px;
-  width: 90vw; /* Adjust based on screen size */
-  max-width: 500px; /* Ensures it doesn’t get too big */
-  height: 100vh; /* Limits excessive height */
-  max-height: 700px; /* Prevents it from being too tall */
-  aspect-ratio: 9 / 16; /* Maintains video proportions */
 }
 
 /* When flipped */
@@ -140,11 +134,12 @@ body {
   z-index: 1;
 }
 
-/* Video styling - fully fits inside the card */
+/* Video inside the card */
 .flip-card video {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures video fills the card properly */
+  object-fit: cover; /* ✅ Ensures full coverage without black bars */
+  border-radius: 12px;
 }
 
 /* ---------------- LOADING SCREEN ---------------- */
