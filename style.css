@@ -183,18 +183,3 @@ body {
 .hidden {
   display: none;
 }
-
-/* Instruction Text - Ensure it's centered above the card */
-.instruction-text {
-  font-size: 1rem;
-  color: #3c2f1d;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 15px; /* Adds space between text and card */
-  position: absolute; /* Keeps it above the card */
-  top: 10%; /* Position near the top */
-  left: 50%;
-  transform: translateX(-50%); /* Centers the text horizontally */
-  width: 100%; /* Ensures full width */
-  z-index: 3; /* Makes sure it's visible above everything */
-}
