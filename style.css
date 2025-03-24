@@ -1,0 +1,145 @@
+/* ---------------- RESET & BASE ---------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f3f3e7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ---------------- ENVELOPE SCREEN ---------------- */
+.envelope-screen {
+  position: absolute;
+  inset: 0;
+  background-color: #f3f3e7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  padding: 20px;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.envelope-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.envelope-text h1 {
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #3c2f1d;
+}
+
+.envelope-text .subtitle {
+  font-size: 1rem;
+  font-style: italic;
+  color: #3c2f1d;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.envelope-img {
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+.envelope-screen button {
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #000;
+  font-weight: bold;
+  border: 2px solid #e0cba6;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.envelope-screen button:hover {
+  background-color: #f0f0f0;
+}
+
+.credit {
+  margin-top: 20px;
+  font-style: italic;
+  color: #3c2f1d;
+  font-size: 1rem;
+}
+
+/* ---------------- VIDEO FLIP CARD ---------------- */
+.video-container {
+  width: 100%;
+  height: 100vh;
+  background-color: #f3f3e7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  padding: 2vw;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Flip animation container */
+.flip-card {
+  width: 100%;
+  max-width: 500px; /* 🔽 Make this smaller as needed */
+  aspect-ratio: 2434 / 3406; /* Maintain original size ratio */
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+  perspective: 1200px;
+}
+
+/* When flipped */
+.flip-card.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Front & back */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+
+.flip-card-front {
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+/* Video styling inside card */
+.flip-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* ✅ No more crop */
+  cursor: pointer;
+  background-color: #000; /* Fallback in case video has transparency */
+}

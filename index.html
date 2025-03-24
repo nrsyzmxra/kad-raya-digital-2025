@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kad Raya Digital</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Envelope screen -->
+  <div class="envelope-screen" id="envelope-screen">
+    <div class="envelope-text">
+      <h1>KAD RAYA DIGITAL</h1>
+      <p class="subtitle">Kepada: Warga Subis<br>Daripada: Sulaiman bin Ahmad serta keluarga</p>
+    </div>
+    <img src="envelope.png" alt="Envelope" class="envelope-img" />
+    <button onclick="openEnvelope()">Buka Sampul</button>
+    <p class="credit">dicipta oleh Nur Syazmiera Afiqah</p>
+  </div>
+
+  <!-- Video screen with flip animation -->
+  <div class="video-container hidden" id="video-container">
+    <div class="flip-card" id="flip-card">
+      <!-- Front: looping video -->
+      <div class="flip-card-front">
+        <video id="video1" autoplay playsinline muted loop>
+          <source src="KadRayaFirst.mp4" type="video/mp4">
+        </video>
+      </div>
+      <!-- Back: second video -->
+      <div class="flip-card-back">
+        <video id="video2" playsinline muted>
+          <source src="KadRayaSecond.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background music -->
+  <audio id="bg-music" src="laguraya.mp3" preload="auto" loop></audio>
+
+  <script>
+    function openEnvelope() {
+      const envelopeScreen = document.getElementById("envelope-screen");
+      envelopeScreen.classList.add("fade-out");
+
+      setTimeout(() => {
+        envelopeScreen.classList.add("hidden");
+        document.getElementById("video-container").classList.remove("hidden");
+
+        const music = document.getElementById("bg-music");
+        music.play().catch(err => console.log("Autoplay blocked:", err));
+      }, 1000);
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const flipCard = document.getElementById("flip-card");
+      const video1 = document.getElementById("video1");
+      const video2 = document.getElementById("video2");
+
+      video1.addEventListener("click", () => {
+        flipCard.classList.add("flipped");
+        video2.currentTime = 0;
+        video2.play();
+      });
+
+      video2.addEventListener("click", () => {
+        flipCard.classList.remove("flipped");
+        video1.play();
+      });
+    });
+  </script>
+</body>
+</html>
