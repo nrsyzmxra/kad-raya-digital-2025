@@ -190,5 +190,7 @@ body {
   color: #3c2f1d;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 15px; /* Space between text and card */
+  margin-bottom: 20px; /* Adds space between text and card */
+  position: relative; /* Ensures it stays outside the card */
+  z-index: 2; /* Makes sure it's visible above everything */
 }
