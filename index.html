@@ -8,6 +8,12 @@
 </head>
 <body>
 
+  <!-- Loading screen -->
+  <div class="loading-screen" id="loading-screen">
+    <p>SEDANG DIMUATKAN...</p>
+    <p>Sila pastikan peranti anda mempunyai sambungan internet.</p>
+  </div>
+
   <!-- Envelope screen -->
   <div class="envelope-screen" id="envelope-screen">
     <div class="envelope-text">
@@ -16,7 +22,7 @@
     </div>
     <img src="envelope.png" alt="Envelope" class="envelope-img" />
     <button onclick="openEnvelope()">Buka Sampul</button>
-    <p class="credit">dicipta oleh Nur Syazmiera Afiqah</p>
+    <p class="credit">Dicipta oleh Nur Syazmiera Afiqah</p>
   </div>
 
   <!-- Video screen with flip animation -->
@@ -41,17 +47,30 @@
   <audio id="bg-music" src="laguraya.mp3" preload="auto" loop></audio>
 
   <script>
+    // Hide loading screen once everything is loaded
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("loading-screen").classList.add("hidden");
+        document.getElementById("envelope-screen").classList.remove("hidden");
+      }, 1500); // Delay for smooth transition
+    });
+
     function openEnvelope() {
       const envelopeScreen = document.getElementById("envelope-screen");
-      envelopeScreen.classList.add("fade-out");
+      const loadingScreen = document.getElementById("loading-screen");
+
+      // Show loading before switching screens
+      loadingScreen.classList.remove("hidden");
 
       setTimeout(() => {
-        envelopeScreen.classList.add("hidden");
+        envelopeScreen.classList.add("fade-out");
         document.getElementById("video-container").classList.remove("hidden");
+        loadingScreen.classList.add("hidden");
 
+        // Start background music
         const music = document.getElementById("bg-music");
         music.play().catch(err => console.log("Autoplay blocked:", err));
-      }, 1000);
+      }, 2000); // Simulated loading time
     }
 
     window.addEventListener("DOMContentLoaded", () => {
