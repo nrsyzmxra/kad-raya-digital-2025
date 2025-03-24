@@ -98,13 +98,30 @@ body {
 /* Flip card - maintains original aspect ratio */
 .flip-card {
   position: relative;
-  width: min(90vw, calc(90vh * (2434 / 3406)));  /* Dynamically adjust width */
-  height: min(90vh, calc(90vw * (3406 / 2434))); /* Dynamically adjust height */
-  max-width: 500px;   /* Set a max limit */
-  max-height: 700px;  /* Set a max limit */
+  width: 90vw; /* Base width */
+  height: calc(90vw * (3406 / 2434)); /* Maintain aspect ratio */
+  
+  max-width: 500px; /* Ensure it doesn't get too large */
+  max-height: 700px; /* Prevent excessive height */
+
   transform-style: preserve-3d;
   transition: transform 1s ease;
   perspective: 1200px;
+}
+
+/* Adjust height when width is limited */
+@media (max-width: 500px) {
+  .flip-card {
+    width: 90vw;
+    height: calc(90vw * (3406 / 2434));
+  }
+}
+
+@media (max-height: 700px) {
+  .flip-card {
+    height: 90vh;
+    width: calc(90vh * (2434 / 3406));
+  }
 }
 
 /* When flipped */
