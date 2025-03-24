@@ -97,15 +97,20 @@ body {
   overflow: hidden;
 }
 
-/* Flip animation container */
+/* Flip card container - responsive and limits height */
 .flip-card {
-  width: 100%;
-  max-width: 500px; /* 🔽 Make this smaller as needed */
-  aspect-ratio: 2434 / 3406; /* Maintain original size ratio */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 1s ease;
   perspective: 1200px;
+  width: 90vw; /* Adjust based on screen size */
+  max-width: 500px; /* Ensures it doesn’t get too big */
+  height: 100vh; /* Limits excessive height */
+  max-height: 700px; /* Prevents it from being too tall */
+  aspect-ratio: 9 / 16; /* Maintains video proportions */
 }
 
 /* When flipped */
@@ -135,11 +140,38 @@ body {
   z-index: 1;
 }
 
-/* Video styling inside card */
+/* Video styling - fully fits inside the card */
 .flip-card video {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* ✅ No more crop */
-  cursor: pointer;
-  background-color: #000; /* Fallback in case video has transparency */
+  object-fit: cover; /* Ensures video fills the card properly */
+}
+
+/* ---------------- LOADING SCREEN ---------------- */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #f3f3e7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+}
+
+.loading-screen p:first-child {
+  font-size: 2rem; /* Bigger font for "SEDANG DIMUATKAN" */
+  font-weight: bold;
+  color: #3c2f1d;
+}
+
+.loading-screen p:last-child {
+  font-size: 1rem; /* Smaller font for "Sila pastikan peranti anda..." */
+  color: #3c2f1d;
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
 }
